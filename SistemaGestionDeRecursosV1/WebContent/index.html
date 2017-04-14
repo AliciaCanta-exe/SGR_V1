@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Autenticación Sistema de Gestión de Recursos Virtuales V1.0</title>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <style type="text/css">
+    /* Credit to bootsnipp.com for the css for the color graph */
+.colorgraph {
+  height: 5px;
+  border-top: 0;
+  background: #0037FF;
+}
+
+.login h2{
+    color: #f99b27;
+}
+    </style>
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        window.alert = function(){};
+        var defaultCSS = document.getElementById('bootstrap-css');
+        function changeCSS(css){
+            if(css) $('head > link').filter(':first').replaceWith('<link rel="stylesheet" href="'+ css +'" type="text/css" />'); 
+            else $('head > link').filter(':first').replaceWith(defaultCSS); 
+        }
+        $( document ).ready(function() {
+          var iframe_height = parseInt($('html').height()); 
+          window.parent.postMessage( iframe_height, 'http://bootsnipp.com');
+        });
+    </script>
+</head>
+<body>
+
+<div class="container login">
+
+<div class="row" style="margin-top:20px">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+    	<form role="form">
+			<fieldset>
+				<h2>Ingrese sus credenciales</h2>
+				<hr class="colorgraph">
+				<div class="form-group">
+                    <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email" required>
+				</div>
+				<div class="form-group">
+                    <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" required>
+				</div>
+				<hr class="colorgraph">
+				<div class="row">
+					<div class="col-xs-6 col-sm-6 col-md-6">
+                        <button class="btn btn-lg btn-default btn-block" >Ingresar</button>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6">
+						<a href="" class="btn btn-lg btn-default btn-block">Limpiar</a>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>
+	</div>
+
+</body>
+</html>
