@@ -27,9 +27,13 @@ public class CursosXMalla implements Serializable {
     @ManyToOne
 	private Mallas mallaId;
 
-	@JoinColumn(name = "curso_id", referencedColumnName = "curso_id")
-    @ManyToOne
-	private Cursos cursoId;
+//	@JoinColumn(name = "curso_id", referencedColumnName = "curso_id")
+//    @ManyToOne
+//	private Cursos cursoId;
+	
+	
+	@Column(name = "curso_id")
+	private Integer cursoId;
 
 	@Column(name = "descripcion")
 	private String descripcion;
@@ -73,16 +77,24 @@ public class CursosXMalla implements Serializable {
 		this.mallaId = mallaId;
 	}
 
-	public Cursos getCursoId() {
-		return cursoId;
-	}
-
-	public void setCursoId(Cursos cursoId) {
-		this.cursoId = cursoId;
-	}
+//	public Cursos getCursoId() {
+//		return cursoId;
+//	}
+//
+//	public void setCursoId(Cursos cursoId) {
+//		this.cursoId = cursoId;
+//	}
 
 	public String getDescripcion() {
 		return descripcion;
+	}
+
+	public Integer getCursoId() {
+		return cursoId;
+	}
+
+	public void setCursoId(Integer cursoId) {
+		this.cursoId = cursoId;
 	}
 
 	public void setDescripcion(String descripcion) {

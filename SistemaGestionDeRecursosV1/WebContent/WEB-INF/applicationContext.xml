@@ -30,21 +30,21 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 		value="root" /> <property name="password" value="12345" /> </bean> -->
 	
 	<!-- CONFIGURACION DE UNA BASE DE DATOS LOCAL -->
-<!-- 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+ 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.postgresql.Driver" />
 		<property name="url" value="jdbc:postgresql://localhost:5432/DB_SGR" />
 		<property name="username" value="postgres" />
 		<property name="password" value="" />
-	</bean> -->
+	</bean>
 	
 	<!-- SERVIDOR EN LA NUBE CON BLUEMIX -->
 	
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.postgresql.Driver" />
 		<property name="url" value="jdbc:postgresql://sl-us-dal-9-portal.7.dblayer.com:22927/compose" />
 		<property name="username" value="admin" />
 		<property name="password" value="VAQWXAARSKYRMPEP" />
-	</bean>	
+	</bean>	-->
 
 	<!-- Session Factory Declaration -->
 	<bean id="sessionFactory"

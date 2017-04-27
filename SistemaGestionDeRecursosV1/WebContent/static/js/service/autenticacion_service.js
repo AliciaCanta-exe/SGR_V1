@@ -2,8 +2,8 @@
 
 angular.module('myLogin').factory('UsuariosService', ['$http', '$q', function($http, $q){
 	
-	var URL_APP = 'http://sistemagestionderecursosv1.mybluemix.net';    //NUBE
-	//var URL_APP = 'http://localhost:8082/SistemaGestionDeRecursosV1'; //LOCAL
+	//var URL_APP = 'https://sistemagestionderecursosv1.mybluemix.net';    //NUBE
+	var URL_APP = 'http://localhost:8082/SistemaGestionDeRecursosV1'; //LOCAL
 		
     var REST_SERVICE_URI = URL_APP+'/autentication/';
 

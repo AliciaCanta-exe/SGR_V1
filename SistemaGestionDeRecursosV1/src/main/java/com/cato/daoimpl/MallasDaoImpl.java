@@ -26,8 +26,8 @@ public class MallasDaoImpl implements MallasDao {
 
 		try {
 			m = (Mallas) session.getCurrentSession()
-								.createQuery("from Mallas where anio=?")
-								.setParameter(0, anio);
+								.createQuery("from Mallas where anio =?")
+								.setParameter(0, anio).list(); 
 
 		} catch (Exception e) {
 			System.err.println(" Error: "+e.getMessage());
@@ -44,7 +44,7 @@ public class MallasDaoImpl implements MallasDao {
 		try {
 			m = (Mallas) session.getCurrentSession()
 							    .createQuery("from Mallas where codigo=?")
-							    .setParameter(0, codigo);
+							    .setParameter(0, codigo).list();
 
 		} catch (Exception e) {
 			System.err.println(" Error: "+e.getMessage());
@@ -70,8 +70,7 @@ public class MallasDaoImpl implements MallasDao {
 		List<Integer> idsCursos = new ArrayList<Integer>();
 
 		try {
-			idsCursos = session.getCurrentSession()
-							   .createQuery("cursoId from CursosXMalla where mallaId=?")
+			idsCursos = session.getCurrentSession().createQuery("cursoId from CursosXMalla where mallaId=?")
 							   .setParameter(0, m.getMallaId())
 							   .list();
 
@@ -84,6 +83,26 @@ public class MallasDaoImpl implements MallasDao {
 	}
 
 	
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	public List<Cursos> listCursosMalla(String anio, String codigomalla) {
+//		
+//		List<Integer> listIdsCursos = listCursosDeMalla(anio, codigomalla);
+//		
+//		List<Cursos> c = new ArrayList<Cursos>();
+//		try {
+//			c =  session.getCurrentSession()
+//						.createQuery("from Cursos where cursoId in:cursoId")
+//						.setParameter("cursoId", "("+listIdsCursos+")")
+//						.list();
+//
+//		} catch (Exception e) {
+//			System.err.println(" Error: "+e.getMessage());
+//			  e.printStackTrace() ;
+//		}
+//		return c;
+//	}	
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Cursos> listCursosMalla(String anio, String codigomalla) {
@@ -93,8 +112,8 @@ public class MallasDaoImpl implements MallasDao {
 		List<Cursos> c = new ArrayList<Cursos>();
 		try {
 			c =  session.getCurrentSession()
-						.createQuery("from Cursos where cursoId in:cursoId")
-						.setParameter("cursoId", "("+listIdsCursos+")")
+						.createQuery("SELECT curso_id,nombre FROM cursos WHERE curso_id in ((SELECT curso_id FROM cursos_x_malla WHERE malla_id = (SELECT malla_id FROM mallas WHERE anio ='2017')) )")
+//						.setParameter("cursoId", "("+listIdsCursos+")")
 						.list();
 
 		} catch (Exception e) {
@@ -102,5 +121,5 @@ public class MallasDaoImpl implements MallasDao {
 			  e.printStackTrace() ;
 		}
 		return c;
-	}	
+	}
 }

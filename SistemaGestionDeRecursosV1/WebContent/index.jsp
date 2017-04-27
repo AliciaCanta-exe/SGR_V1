@@ -51,7 +51,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="file">Password</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.usuario.clave" name="clave" class="username form-control input-sm" placeholder="Enter your password" required ng-minlength="6"/>
+                                  <input type="password" ng-model="ctrl.usuario.clave" name="clave" class="username form-control input-sm" placeholder="Enter your password" required ng-minlength="6"/>
                                   <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.clave.$error.required">This is a required field</span>
                                       <span ng-show="myForm.clave.$error.minlength">Minimum length required is 6</span>
@@ -74,7 +74,7 @@
       
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
       <script src="<c:url value='/static/js/app.js' />"></script>
-      <script src="<c:url value='/static/js/service/usuarios_service.js' />"></script>
-      <script src="<c:url value='/static/js/controller/usuarios_controller.js' />"></script>
+      <script src="<c:url value='/static/js/service/autenticacion_service.js' />"></script>
+      <script src="<c:url value='/static/js/controller/autenticacion_controller.js' />"></script>
   </body>
 </html>

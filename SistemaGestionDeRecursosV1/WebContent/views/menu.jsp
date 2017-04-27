@@ -50,7 +50,7 @@
 						<div class="caixa-icones">
 							<p id="explicacao2">&nbsp;</p>
 							<ul id="list-icones">
-								<li class="item-icone">
+<!-- 								<li class="item-icone">
 									<a href="#" class="icone dropdown-toggle" data-toggle="dropdown">
 									<img src="http://www.transparencia.pr.gov.br/pte/resources/images/icon-tema-orcamento.png" alt="PLANEJAMENTO E ORÃAMENTO" class="icone-tema">
 									<span>CURRICULA</span>
@@ -93,11 +93,11 @@
 											</a>
 										</li>
 									</ul>
-								</li>
+								</li> -->
 								<li class="item-icone">
 									<a href="#" class="icone dropdown-toggle" data-toggle="dropdown">
 									<img src="http://www.transparencia.pr.gov.br/pte/resources/images/icon-tema-receitas.png" alt="RECEITAS" class="icone-tema">
-									<span>EVALUACION DE CURRICULAS</span>
+									<span>Gestión Malla Curricular</span>
 									</a>
 									<div class="arrow-tema-icones"></div>
 									<ul class="submenu dropdown-menu" role="menu">
@@ -105,10 +105,10 @@
 											<ul class="submenu dropdown-menu" role="menu">
 											</ul>
 											<a href="http://www.transparencia.pr.gov.br/pte/assunto/3/3?origem=3" class="ui-link ui-widget link-menu" target="_self">
-											<i class="fa fa-arrow-right"></i>&nbsp; Evaluación 1
+											<i class="fa fa-arrow-right"></i>&nbsp; Mallas
 											</a>
 										</li>
-										<li>
+<!-- 										<li>
 											<ul class="submenu dropdown-menu" role="menu">
 											</ul>
 											<a href="http://www.transparencia.pr.gov.br/pte/assunto/3/27?origem=3" class="ui-link ui-widget link-menu" target="_self">
@@ -128,7 +128,7 @@
 											<a href="http://www.transparencia.pr.gov.br/pte/assunto/3/4?origem=3" class="ui-link ui-widget link-menu" target="_self">
 											<i class="fa fa-arrow-right"></i>&nbsp;  Evaluación 4
 											</a>
-										</li>
+										</li> -->
 									</ul>
 								</li>
 								<li class="item-icone">
@@ -145,7 +145,7 @@
 											<i class="fa fa-arrow-right"></i>&nbsp; Consulta 1
 											</a>
 										</li>
-										<li>
+<!-- 										<li>
 											<ul class="submenu dropdown-menu" role="menu">
 											</ul>
 											<a href="http://www.transparencia.pr.gov.br/pte/assunto/4/28?origem=3" class="ui-link ui-widget link-menu" target="_self">
@@ -165,13 +165,13 @@
 											<a href="http://www.transparencia.pr.gov.br/pte/assunto/4/49?origem=3" class="ui-link ui-widget link-menu" target="_self">
 											<i class="fa fa-arrow-right"></i>&nbsp; Consulta 4
 											</a>
-										</li>
+										</li> -->
 									</ul>
 								</li>
 								<li class="item-icone">
 									<a href="#" class="icone dropdown-toggle" data-toggle="dropdown">
 									<img src="http://www.transparencia.pr.gov.br/pte/resources/images/icon-tema-pessoal.png" alt="PESSOAL" class="icone-tema">
-									<span>GESTION PERMISOS</span>
+									<span>Gestión de Permisos</span>
 									</a>
 									<div class="arrow-tema-icones"></div>
 									<ul class="submenu dropdown-menu" role="menu">
@@ -182,7 +182,7 @@
 											<i class="fa fa-arrow-right"></i>&nbsp; Permisos 1
 											</a>
 										</li>
-										<li>
+<!-- 										<li>
 											<ul class="submenu dropdown-menu" role="menu">
 											</ul>
 											<a href="http://www.transparencia.pr.gov.br/pte/assunto/6/2?origem=3" class="ui-link ui-widget link-menu" target="_self">
@@ -202,16 +202,23 @@
 											<a href="http://www.transparencia.pr.gov.br/pte/assunto/6/34?origem=3" class="ui-link ui-widget link-menu" target="_self">
 											<i class="fa fa-arrow-right"></i>&nbsp; Permisos 4
 											</a>
-										</li>
+										</li> -->
 									</ul>
 								</li>
 								<li class="item-icone">
 									<a href="#" class="icone dropdown-toggle" data-toggle="dropdown">
 									<img src="http://www.transparencia.pr.gov.br/pte/resources/images/icon-tema-informacoes-gerais.png" alt="INFORMAÃÃES GERAIS" class="icone-tema">
-									<span>CONTENIDO DIDACTICO</span>
+									<span>Contenido Didactico</span>
 									</a>
 									<div class="arrow-tema-icones"></div>
 									<ul class="submenu dropdown-menu" role="menu">
+										<li>
+											<ul class="submenu dropdown-menu" role="menu">
+											</ul>
+											<a href="contenido_didactico/rmpp.jsp" class="ui-link ui-widget link-menu" target="_self">
+											<i class="fa fa-arrow-right"></i>&nbsp; Registrar Material Propuesto Preliminar
+											</a>
+										</li>									
 										<li>
 											<ul class="submenu dropdown-menu" role="menu">
 											</ul>
@@ -219,14 +226,7 @@
 											<i class="fa fa-arrow-right"></i>&nbsp; Afinar Unidades de Aprendizaje
 											</a>
 										</li>
-										<li>
-											<ul class="submenu dropdown-menu" role="menu">
-											</ul>
-											<a href="contenido_didactico/rmpp.jsp" class="ui-link ui-widget link-menu" target="_self">
-											<i class="fa fa-arrow-right"></i>&nbsp; Registrar Material propuesto Preliminar
-											</a>
-										</li>
-										<li>
+<!-- 										<li>
 											<ul class="submenu dropdown-menu" role="menu">
 											</ul>
 											<a href="http://www.transparencia.pr.gov.br/pte/assunto/8/41?origem=3" class="ui-link ui-widget link-menu" target="_self">
@@ -239,13 +239,13 @@
 											<a href="http://www.transparencia.pr.gov.br/pte/assunto/8/48?origem=3" class="ui-link ui-widget link-menu" target="_self">
 											<i class="fa fa-arrow-right"></i>&nbsp; Contenido 4
 											</a>
-										</li>
+										</li> -->
 									</ul>
 								</li>								
 								<li class="item-icone">
 									<a href="#" class="icone dropdown-toggle" data-toggle="dropdown">
 									<img src="http://www.transparencia.pr.gov.br/pte/resources/images/icon-tema-compras.png" alt="COMPRAS" class="icone-tema">
-									<span>NOTAS</span>
+									<span>Gestión de Notas</span>
 									</a>
 									<div class="arrow-tema-icones"></div>
 									<ul class="submenu dropdown-menu" role="menu">
@@ -256,7 +256,7 @@
 											<i class="fa fa-arrow-right"></i>&nbsp; Nota 1
 											</a>
 										</li>
-										<li>
+<!-- 										<li>
 											<ul class="submenu dropdown-menu" role="menu">
 											</ul>
 											<a href="http://www.transparencia.pr.gov.br/pte/assunto/5/10?origem=3" class="ui-link ui-widget link-menu" target="_self">
@@ -276,13 +276,13 @@
 											<a href="http://www.transparencia.pr.gov.br/pte/assunto/5/11?origem=3" class="ui-link ui-widget link-menu" target="_self">
 											<i class="fa fa-arrow-right"></i>&nbsp; Nota 4
 											</a>
-										</li>
+										</li> -->
 									</ul>
 								</li>
 								<li class="item-icone">
 									<a href="#" class="icone dropdown-toggle" data-toggle="dropdown">
 									<img src="http://www.transparencia.pr.gov.br/pte/resources/images/icon-tema-convenios-transparencias.png" alt="RESPONSABILIDADE FISCAL" class="icone-tema">
-									<span>UTIL</span>
+									<span>Manuales</span>
 									</a>
 									<div class="arrow-tema-icones"></div>
 									<ul class="submenu dropdown-menu" role="menu">
@@ -290,10 +290,10 @@
 											<ul class="submenu dropdown-menu" role="menu">
 											</ul>
 											<a href="http://www.transparencia.pr.gov.br/pte/assunto/7/36?origem=3" class="ui-link ui-widget link-menu" target="_self">
-											<i class="fa fa-arrow-right"></i>&nbsp; Util 1
+											<i class="fa fa-arrow-right"></i>&nbsp; Manual de uso del Sistema
 											</a>
 										</li>
-										<li>
+<!-- 										<li>
 											<ul class="submenu dropdown-menu" role="menu">
 											</ul>
 											<a href="http://www.transparencia.pr.gov.br/pte/assunto/7/53?origem=3" class="ui-link ui-widget link-menu" target="_self">
@@ -313,7 +313,7 @@
 											<a href="http://www.transparencia.pr.gov.br/pte/assunto/7/37?origem=3" class="ui-link ui-widget link-menu" target="_self">
 											<i class="fa fa-arrow-right"></i>&nbsp; Util 4
 											</a>
-										</li>
+										</li> -->
 									</ul>
 								</li>
 
