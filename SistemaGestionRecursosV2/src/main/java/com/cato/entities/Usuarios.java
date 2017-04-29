@@ -45,6 +45,11 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Usuarios.findByFechaActualizacion", query = "SELECT u FROM Usuarios u WHERE u.fechaActualizacion = :fechaActualizacion")})
 public class Usuarios implements Serializable {
 
+    @OneToMany(mappedBy = "usuarioId")
+    private List<RecursosXTema> recursosXTemaList;
+    @OneToMany(mappedBy = "usuarioId")
+    private List<TipoRecurso> tipoRecursoList;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -236,6 +241,24 @@ public class Usuarios implements Serializable {
     @Override
     public String toString() {
         return "com.cato.entities.Usuarios[ usuarioId=" + usuarioId + " ]";
+    }
+
+    @XmlTransient
+    public List<RecursosXTema> getRecursosXTemaList() {
+        return recursosXTemaList;
+    }
+
+    public void setRecursosXTemaList(List<RecursosXTema> recursosXTemaList) {
+        this.recursosXTemaList = recursosXTemaList;
+    }
+
+    @XmlTransient
+    public List<TipoRecurso> getTipoRecursoList() {
+        return tipoRecursoList;
+    }
+
+    public void setTipoRecursoList(List<TipoRecurso> tipoRecursoList) {
+        this.tipoRecursoList = tipoRecursoList;
     }
     
 }

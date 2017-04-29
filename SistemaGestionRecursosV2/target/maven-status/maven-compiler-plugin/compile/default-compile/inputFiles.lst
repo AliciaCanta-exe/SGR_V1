@@ -3,6 +3,7 @@ D:\1_WS\wNetbeans\SistemaGestionRecursosV2\src\main\java\com\cato\jsf\controller
 D:\1_WS\wNetbeans\SistemaGestionRecursosV2\src\main\java\com\cato\entities\Estado.java
 D:\1_WS\wNetbeans\SistemaGestionRecursosV2\src\main\java\com\cato\jsf\controllers\util\LoginDAO.java
 D:\1_WS\wNetbeans\SistemaGestionRecursosV2\src\main\java\com\cato\sessions\EstadoFacade.java
+D:\1_WS\wNetbeans\SistemaGestionRecursosV2\src\main\java\com\cato\utils\SearchExample.java
 D:\1_WS\wNetbeans\SistemaGestionRecursosV2\src\main\java\com\cato\entities\UnidadAprendizaje.java
 D:\1_WS\wNetbeans\SistemaGestionRecursosV2\src\main\java\com\cato\jsf\controllers\CursosController.java
 D:\1_WS\wNetbeans\SistemaGestionRecursosV2\src\main\java\com\cato\jsf\controllers\MallasController.java
@@ -17,6 +18,7 @@ D:\1_WS\wNetbeans\SistemaGestionRecursosV2\src\main\java\com\cato\sessions\Unida
 D:\1_WS\wNetbeans\SistemaGestionRecursosV2\src\main\java\com\cato\entities\Login.java
 D:\1_WS\wNetbeans\SistemaGestionRecursosV2\src\main\java\com\cato\entities\Temas.java
 D:\1_WS\wNetbeans\SistemaGestionRecursosV2\src\main\java\com\cato\sessions\MallasFacade.java
+D:\1_WS\wNetbeans\SistemaGestionRecursosV2\src\main\java\com\cato\utils\CheckboxView.java
 D:\1_WS\wNetbeans\SistemaGestionRecursosV2\src\main\java\com\cato\utils\DataListView.java
 D:\1_WS\wNetbeans\SistemaGestionRecursosV2\src\main\java\com\cato\jsf\controllers\UnidadAprendizajeController.java
 D:\1_WS\wNetbeans\SistemaGestionRecursosV2\src\main\java\com\cato\jsf\controllers\util\AuthorizationFilter.java

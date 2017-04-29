@@ -7,6 +7,7 @@ package com.cato.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,12 +18,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -42,6 +45,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Temas.findByFechaActualizacion", query = "SELECT t FROM Temas t WHERE t.fechaActualizacion = :fechaActualizacion")
     , @NamedQuery(name = "Temas.findByReferencia1", query = "SELECT t FROM Temas t WHERE t.referencia1 = :referencia1")})
 public class Temas implements Serializable {
+
+    @OneToMany(mappedBy = "temaId")
+    private List<RecursosXTema> recursosXTemaList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -217,6 +223,15 @@ public class Temas implements Serializable {
     @Override
     public String toString() {
         return "com.cato.entities.Temas[ temaId=" + temaId + " ]";
+    }
+
+    @XmlTransient
+    public List<RecursosXTema> getRecursosXTemaList() {
+        return recursosXTemaList;
+    }
+
+    public void setRecursosXTemaList(List<RecursosXTema> recursosXTemaList) {
+        this.recursosXTemaList = recursosXTemaList;
     }
     
 }

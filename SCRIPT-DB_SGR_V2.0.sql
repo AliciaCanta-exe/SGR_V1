@@ -224,7 +224,8 @@ INSERT INTO public.cursos_x_malla(
 /*  SEGUNDA PARTE */	
 
 /*
- * Tabla usuarios 
+ * Tabla Tipo de Recurso
+ * IMG, VIDEO, AUDIO, LINK
  */    
 
 CREATE TABLE tipo_recurso (
@@ -253,5 +254,28 @@ VALUES('AUDIO', 'Audio', 'Recurso tipo Audio', '2017-04-23',null, 'C', 1);
 INSERT INTO tipo_recurso(codigo, nombre, descripcion, fecha_registro, fecha_actualizacion, codigo_estado, usuario_id)
 VALUES('TEXT', 'Texto', 'Recurso tipo TEXTO', '2017-04-23',null, 'C', 1);
 
+/*
+ * Tabla usuarios 
+ */    
 
-	
+CREATE TABLE recursos_x_tema(
+rxt_id SERIAL PRIMARY KEY,
+tipo_recurso_id INTEGER REFERENCES tipo_recurso,
+tema_id INTEGER REFERENCES temas,
+fuente VARCHAR(2500) NOT NULL,
+descripcion TEXT NULL,
+detalle_descripcion TEXT NULL,
+contentUrl TEXT null,  
+url TEXT null,  
+license TEXT null,  
+referencia1 TEXT null,
+referencia2 TEXT null,  
+fecha_registro DATE NOT NULL,
+fecha_actualizacion DATE NULL,   
+codigo_estado VARCHAR(1) REFERENCES estado,
+usuario_id INTEGER REFERENCES usuarios   
+);
+
+INSERT INTO recursos_x_tema (tipo_recurso_id, tema_id, fuente, descripcion, detalle_descripcion, contenturl, url, license, referencia1, referencia2, fecha_registro, fecha_actualizacion, codigo_estado, usuario_id)
+VALUES( 3, 1, 'Welcome to Schema.org', 'Barack Hussein Obama II is an American politician', 'detalle descripcion', 'http://t0.gstatic.com/images?q=tbn:ANd9GcSkJEGgR2wJ0bp8DhOXx2QuexPLTslqt0v-G2iTiDWVp3iRhSnc','https://commons.wikimedia.org/wiki/File:BarackObama2005portrait.jpg','https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License','referencia1', 'referencia2', '2017-04-23',null, 'C', 1);
+

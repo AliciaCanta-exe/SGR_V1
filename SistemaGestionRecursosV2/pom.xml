@@ -12,6 +12,7 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jackson.version>2.7.5</jackson.version>
     </properties>
     
     <dependencies>
@@ -38,8 +39,31 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-        
-        
+      
+        <!-- for Knowledge Graph Search API -->
+        <dependency>
+          <groupId>com.google.apis</groupId>
+          <artifactId>google-api-services-kgsearch</artifactId>
+          <version>v1-rev227-1.22.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+            <version>2.0.0</version>
+        </dependency>                          
+
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4-1200-jdbc41</version>
+        </dependency>                
         
     </dependencies>
 
