@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TemasEditDlg" widgetVar="TemasEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTemasTitle}">
+            <h:form id="TemasEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{temasController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTemasLabel_temaId}" for="temaId" />
+                        <p:inputText id="temaId" value="#{temasController.selected.temaId}" title="#{bundle.EditTemasTitle_temaId}" required="true" requiredMessage="#{bundle.EditTemasRequiredMessage_temaId}"/>
+                        <p:outputLabel value="#{bundle.EditTemasLabel_codigo}" for="codigo" />
+                        <p:inputText id="codigo" value="#{temasController.selected.codigo}" title="#{bundle.EditTemasTitle_codigo}" required="true" requiredMessage="#{bundle.EditTemasRequiredMessage_codigo}"/>
+                        <p:outputLabel value="#{bundle.EditTemasLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{temasController.selected.nombre}" title="#{bundle.EditTemasTitle_nombre}" required="true" requiredMessage="#{bundle.EditTemasRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.EditTemasLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{temasController.selected.descripcion}" title="#{bundle.EditTemasTitle_descripcion}" required="true" requiredMessage="#{bundle.EditTemasRequiredMessage_descripcion}"/>
+                        <p:outputLabel value="#{bundle.EditTemasLabel_objetivo}" for="objetivo" />
+                        <p:inputText id="objetivo" value="#{temasController.selected.objetivo}" title="#{bundle.EditTemasTitle_objetivo}" required="true" requiredMessage="#{bundle.EditTemasRequiredMessage_objetivo}"/>
+                        <p:outputLabel value="#{bundle.EditTemasLabel_fechaRegistro}" for="fechaRegistro" />
+                        <p:calendar id="fechaRegistro" pattern="MM/dd/yyyy" value="#{temasController.selected.fechaRegistro}" title="#{bundle.EditTemasTitle_fechaRegistro}" required="true" requiredMessage="#{bundle.EditTemasRequiredMessage_fechaRegistro}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditTemasLabel_fechaActualizacion}" for="fechaActualizacion" />
+                        <p:calendar id="fechaActualizacion" pattern="MM/dd/yyyy" value="#{temasController.selected.fechaActualizacion}" title="#{bundle.EditTemasTitle_fechaActualizacion}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditTemasLabel_referencia1}" for="referencia1" />
+                        <p:inputText id="referencia1" value="#{temasController.selected.referencia1}" title="#{bundle.EditTemasTitle_referencia1}" />
+                        <p:outputLabel value="#{bundle.EditTemasLabel_codigoEstado}" for="codigoEstado" />
+                        <p:selectOneMenu id="codigoEstado" value="#{temasController.selected.codigoEstado}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{estadoController.itemsAvailableSelectOne}"
+                                           var="codigoEstadoItem"
+                                           itemValue="#{codigoEstadoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTemasLabel_unidadAprendizajeId}" for="unidadAprendizajeId" />
+                        <p:selectOneMenu id="unidadAprendizajeId" value="#{temasController.selected.unidadAprendizajeId}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{unidadAprendizajeController.itemsAvailableSelectOne}"
+                                           var="unidadAprendizajeIdItem"
+                                           itemValue="#{unidadAprendizajeIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTemasLabel_usuarioId}" for="usuarioId" />
+                        <p:selectOneMenu id="usuarioId" value="#{temasController.selected.usuarioId}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"
+                                           var="usuarioIdItem"
+                                           itemValue="#{usuarioIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{temasController.update}" value="#{bundle.Save}" update="display,:TemasListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TemasEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TemasEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

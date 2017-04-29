@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UnidadAprendizajeCreateDlg" widgetVar="UnidadAprendizajeCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateUnidadAprendizajeTitle}">
+            <h:form id="UnidadAprendizajeCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{unidadAprendizajeController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateUnidadAprendizajeLabel_unidadAprendizajeId}" for="unidadAprendizajeId" />
+                        <p:inputText id="unidadAprendizajeId" value="#{unidadAprendizajeController.selected.unidadAprendizajeId}" title="#{bundle.CreateUnidadAprendizajeTitle_unidadAprendizajeId}" required="true" requiredMessage="#{bundle.CreateUnidadAprendizajeRequiredMessage_unidadAprendizajeId}"/>
+                        <p:outputLabel value="#{bundle.CreateUnidadAprendizajeLabel_codigo}" for="codigo" />
+                        <p:inputText id="codigo" value="#{unidadAprendizajeController.selected.codigo}" title="#{bundle.CreateUnidadAprendizajeTitle_codigo}" required="true" requiredMessage="#{bundle.CreateUnidadAprendizajeRequiredMessage_codigo}"/>
+                        <p:outputLabel value="#{bundle.CreateUnidadAprendizajeLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{unidadAprendizajeController.selected.nombre}" title="#{bundle.CreateUnidadAprendizajeTitle_nombre}" required="true" requiredMessage="#{bundle.CreateUnidadAprendizajeRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.CreateUnidadAprendizajeLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{unidadAprendizajeController.selected.descripcion}" title="#{bundle.CreateUnidadAprendizajeTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateUnidadAprendizajeRequiredMessage_descripcion}"/>
+                        <p:outputLabel value="#{bundle.CreateUnidadAprendizajeLabel_objetivo}" for="objetivo" />
+                        <p:inputText id="objetivo" value="#{unidadAprendizajeController.selected.objetivo}" title="#{bundle.CreateUnidadAprendizajeTitle_objetivo}" required="true" requiredMessage="#{bundle.CreateUnidadAprendizajeRequiredMessage_objetivo}"/>
+                        <p:outputLabel value="#{bundle.CreateUnidadAprendizajeLabel_cantTemas}" for="cantTemas" />
+                        <p:inputText id="cantTemas" value="#{unidadAprendizajeController.selected.cantTemas}" title="#{bundle.CreateUnidadAprendizajeTitle_cantTemas}" />
+                        <p:outputLabel value="#{bundle.CreateUnidadAprendizajeLabel_fechaRegistro}" for="fechaRegistro" />
+                        <p:calendar id="fechaRegistro" pattern="MM/dd/yyyy" value="#{unidadAprendizajeController.selected.fechaRegistro}" title="#{bundle.EditUnidadAprendizajeTitle_fechaRegistro}" required="true" requiredMessage="#{bundle.EditUnidadAprendizajeRequiredMessage_fechaRegistro}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateUnidadAprendizajeLabel_fechaActualizacion}" for="fechaActualizacion" />
+                        <p:calendar id="fechaActualizacion" pattern="MM/dd/yyyy" value="#{unidadAprendizajeController.selected.fechaActualizacion}" title="#{bundle.EditUnidadAprendizajeTitle_fechaActualizacion}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateUnidadAprendizajeLabel_referencia1}" for="referencia1" />
+                        <p:inputText id="referencia1" value="#{unidadAprendizajeController.selected.referencia1}" title="#{bundle.CreateUnidadAprendizajeTitle_referencia1}" />
+                        <p:outputLabel value="#{bundle.CreateUnidadAprendizajeLabel_cursoId}" for="cursoId" />
+                        <p:selectOneMenu id="cursoId" value="#{unidadAprendizajeController.selected.cursoId}" >
+                            <f:selectItems value="#{cursosController.itemsAvailableSelectOne}"
+                                           var="cursoIdItem"
+                                           itemValue="#{cursoIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateUnidadAprendizajeLabel_codigoEstado}" for="codigoEstado" />
+                        <p:selectOneMenu id="codigoEstado" value="#{unidadAprendizajeController.selected.codigoEstado}" >
+                            <f:selectItems value="#{estadoController.itemsAvailableSelectOne}"
+                                           var="codigoEstadoItem"
+                                           itemValue="#{codigoEstadoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateUnidadAprendizajeLabel_usuarioId}" for="usuarioId" />
+                        <p:selectOneMenu id="usuarioId" value="#{unidadAprendizajeController.selected.usuarioId}" >
+                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"
+                                           var="usuarioIdItem"
+                                           itemValue="#{usuarioIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{unidadAprendizajeController.create}" value="#{bundle.Save}" update="display,:UnidadAprendizajeListForm:datalist,:growl" oncomplete="handleSubmit(args,'UnidadAprendizajeCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UnidadAprendizajeCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
