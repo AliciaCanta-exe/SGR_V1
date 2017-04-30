@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import com.cato.entities.Car;
+import com.cato.entities.Recurso;
 import java.util.Arrays;
  
 @ManagedBean(name = "carService")
@@ -46,10 +46,13 @@ public class CarService {
         brands[9] = "Ford";
     }
      
-    public List<Car> createCars(int size) {
-        List<Car> list = new ArrayList<Car>();
+    public List<Recurso> createCars(int size) {
+        List<Recurso> list = new ArrayList<Recurso>();
         for(int i = 0 ; i < size ; i++) {
-            list.add(new Car(getRandomId(), getRandomBrand(), getRandomYear(), getRandomColor(), getRandomPrice(), getRandomSoldState()));
+            list.add(new Recurso(getRandomId(), getRandomBrand(), getRandomYear(), getRandomColor(), getRandomPrice(), getRandomSoldState()));
+//list.add(new Recurso(getRandomId(), getRandomBrand(), getRandomYear(), getRandomColor(), getRandomPrice(), getRandomSoldState()));            
+
+            
         }
          
         return list;

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MallasViewDlg" widgetVar="MallasViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMallasTitle}">
+            <h:form id="MallasViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{mallasController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMallasLabel_mallaId}"/>
+                        <h:outputText value="#{mallasController.selected.mallaId}" title="#{bundle.ViewMallasTitle_mallaId}"/>
+                        <h:outputText value="#{bundle.ViewMallasLabel_codigo}"/>
+                        <h:outputText value="#{mallasController.selected.codigo}" title="#{bundle.ViewMallasTitle_codigo}"/>
+                        <h:outputText value="#{bundle.ViewMallasLabel_anio}"/>
+                        <h:outputText value="#{mallasController.selected.anio}" title="#{bundle.ViewMallasTitle_anio}"/>
+                        <h:outputText value="#{bundle.ViewMallasLabel_nombre}"/>
+                        <h:outputText value="#{mallasController.selected.nombre}" title="#{bundle.ViewMallasTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewMallasLabel_descripcion}"/>
+                        <h:outputText value="#{mallasController.selected.descripcion}" title="#{bundle.ViewMallasTitle_descripcion}"/>
+                        <h:outputText value="#{bundle.ViewMallasLabel_objetivo}"/>
+                        <h:outputText value="#{mallasController.selected.objetivo}" title="#{bundle.ViewMallasTitle_objetivo}"/>
+                        <h:outputText value="#{bundle.ViewMallasLabel_fechaRegistro}"/>
+                        <h:outputText value="#{mallasController.selected.fechaRegistro}" title="#{bundle.ViewMallasTitle_fechaRegistro}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMallasLabel_fechaActualizacion}"/>
+                        <h:outputText value="#{mallasController.selected.fechaActualizacion}" title="#{bundle.ViewMallasTitle_fechaActualizacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMallasLabel_referencia1}"/>
+                        <h:outputText value="#{mallasController.selected.referencia1}" title="#{bundle.ViewMallasTitle_referencia1}"/>
+                        <h:outputText value="#{bundle.ViewMallasLabel_codigoEstado}"/>
+                        <h:outputText value="#{mallasController.selected.codigoEstado}" title="#{bundle.ViewMallasTitle_codigoEstado}"/>
+                        <h:outputText value="#{bundle.ViewMallasLabel_usuarioId}"/>
+                        <h:outputText value="#{mallasController.selected.usuarioId}" title="#{bundle.ViewMallasTitle_usuarioId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MallasViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

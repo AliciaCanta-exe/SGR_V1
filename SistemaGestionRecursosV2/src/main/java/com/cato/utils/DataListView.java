@@ -27,9 +27,9 @@ public class DataListView implements Serializable {
      
     @PostConstruct
     public void init() {
-     //   cars1 = service.createCars(10);
-       // cars2 = service.createCars(5);
-        //cars3 = service.createCars(50);
+        recurso1 = service.createCars(10);
+        recurso2 = service.createCars(5);
+        recurso3 = service.createCars(50);
     }
 
     /**
@@ -101,5 +101,10 @@ public class DataListView implements Serializable {
     public void setSelectedRecurso(Recurso selectedRecurso) {
         this.selectedRecurso = selectedRecurso;
     }
+    
+    public void setService(CarService service) {
+        this.service = service;
+    }
+     
 
 }

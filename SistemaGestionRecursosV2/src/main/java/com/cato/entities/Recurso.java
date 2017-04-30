@@ -34,6 +34,15 @@ public class Recurso implements Serializable {
         this.referencia1         = referencia1;
     }
 
+    public Recurso(String randomId, String randomBrand, int randomYear, String randomColor, int randomPrice, 
+            boolean randomSoldState) {
+        this.tipo_recurso   = randomId;
+        this.tema           = randomBrand;
+        this.fuente         = String.valueOf(randomPrice);
+        this.descripcion    = randomColor;
+        this.detalle_descripcion = String.valueOf(randomSoldState);     
+    }
+
     /**
      * @return the tipo_recurso
      */

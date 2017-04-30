@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TemasViewDlg" widgetVar="TemasViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTemasTitle}">
+            <h:form id="TemasViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{temasController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTemasLabel_temaId}"/>
+                        <h:outputText value="#{temasController.selected.temaId}" title="#{bundle.ViewTemasTitle_temaId}"/>
+                        <h:outputText value="#{bundle.ViewTemasLabel_codigo}"/>
+                        <h:outputText value="#{temasController.selected.codigo}" title="#{bundle.ViewTemasTitle_codigo}"/>
+                        <h:outputText value="#{bundle.ViewTemasLabel_nombre}"/>
+                        <h:outputText value="#{temasController.selected.nombre}" title="#{bundle.ViewTemasTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewTemasLabel_descripcion}"/>
+                        <h:outputText value="#{temasController.selected.descripcion}" title="#{bundle.ViewTemasTitle_descripcion}"/>
+                        <h:outputText value="#{bundle.ViewTemasLabel_objetivo}"/>
+                        <h:outputText value="#{temasController.selected.objetivo}" title="#{bundle.ViewTemasTitle_objetivo}"/>
+                        <h:outputText value="#{bundle.ViewTemasLabel_fechaRegistro}"/>
+                        <h:outputText value="#{temasController.selected.fechaRegistro}" title="#{bundle.ViewTemasTitle_fechaRegistro}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTemasLabel_fechaActualizacion}"/>
+                        <h:outputText value="#{temasController.selected.fechaActualizacion}" title="#{bundle.ViewTemasTitle_fechaActualizacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTemasLabel_referencia1}"/>
+                        <h:outputText value="#{temasController.selected.referencia1}" title="#{bundle.ViewTemasTitle_referencia1}"/>
+                        <h:outputText value="#{bundle.ViewTemasLabel_codigoEstado}"/>
+                        <h:outputText value="#{temasController.selected.codigoEstado}" title="#{bundle.ViewTemasTitle_codigoEstado}"/>
+                        <h:outputText value="#{bundle.ViewTemasLabel_unidadAprendizajeId}"/>
+                        <h:outputText value="#{temasController.selected.unidadAprendizajeId}" title="#{bundle.ViewTemasTitle_unidadAprendizajeId}"/>
+                        <h:outputText value="#{bundle.ViewTemasLabel_usuarioId}"/>
+                        <h:outputText value="#{temasController.selected.usuarioId}" title="#{bundle.ViewTemasTitle_usuarioId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TemasViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
