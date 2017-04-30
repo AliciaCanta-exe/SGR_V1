@@ -221,7 +221,7 @@ INSERT INTO public.cursos_x_malla(
 	VALUES (1, 3, 'Descripcion 3 curso por malla', 'Objetivos 3 curso por malla', '2017-04-23', null, 'C', 1, null, null);
 
 	
-/*  SEGUNDA PARTE */	
+/* SCRIPT SEGUNDA PARTE */	
 
 /*
  * Tabla Tipo de Recurso

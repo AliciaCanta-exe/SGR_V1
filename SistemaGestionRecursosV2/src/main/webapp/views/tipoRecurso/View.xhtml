@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipoRecursoViewDlg" widgetVar="TipoRecursoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTipoRecursoTitle}">
+            <h:form id="TipoRecursoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tipoRecursoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTipoRecursoLabel_tipoRecursoId}"/>
+                        <h:outputText value="#{tipoRecursoController.selected.tipoRecursoId}" title="#{bundle.ViewTipoRecursoTitle_tipoRecursoId}"/>
+                        <h:outputText value="#{bundle.ViewTipoRecursoLabel_codigo}"/>
+                        <h:outputText value="#{tipoRecursoController.selected.codigo}" title="#{bundle.ViewTipoRecursoTitle_codigo}"/>
+                        <h:outputText value="#{bundle.ViewTipoRecursoLabel_nombre}"/>
+                        <h:outputText value="#{tipoRecursoController.selected.nombre}" title="#{bundle.ViewTipoRecursoTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewTipoRecursoLabel_descripcion}"/>
+                        <h:outputText value="#{tipoRecursoController.selected.descripcion}" title="#{bundle.ViewTipoRecursoTitle_descripcion}"/>
+                        <h:outputText value="#{bundle.ViewTipoRecursoLabel_fechaRegistro}"/>
+                        <h:outputText value="#{tipoRecursoController.selected.fechaRegistro}" title="#{bundle.ViewTipoRecursoTitle_fechaRegistro}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTipoRecursoLabel_fechaActualizacion}"/>
+                        <h:outputText value="#{tipoRecursoController.selected.fechaActualizacion}" title="#{bundle.ViewTipoRecursoTitle_fechaActualizacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTipoRecursoLabel_codigoEstado}"/>
+                        <h:outputText value="#{tipoRecursoController.selected.codigoEstado}" title="#{bundle.ViewTipoRecursoTitle_codigoEstado}"/>
+                        <h:outputText value="#{bundle.ViewTipoRecursoLabel_usuarioId}"/>
+                        <h:outputText value="#{tipoRecursoController.selected.usuarioId}" title="#{bundle.ViewTipoRecursoTitle_usuarioId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TipoRecursoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

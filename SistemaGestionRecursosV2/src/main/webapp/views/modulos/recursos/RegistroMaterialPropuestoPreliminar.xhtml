@@ -9,7 +9,7 @@
 <ui:composition template="/template.xhtml">
 
     <ui:define name="title">
-        <h:outputText value="#{bundle.Tittle_ModRecursos_Form_RMPP}"></h:outputText>
+        <h:outputText value="#{bundle.TITULO_FORM_RMPP}"></h:outputText>
     </ui:define>
     
     <ui:define name="body">  
@@ -23,83 +23,31 @@
                     <p:inputText id="anio"/> 
                     <p:outputLabel for="codigoMalla" value="Codigo"/>
                     <p:inputText id="codigoMalla"/>   
-                    <p:commandButton value="Buscar" id="ajax" icon="ui-icon-search" update="growl" styleClass="ui-priority-primary" />                    
+                    <p:commandButton value="Buscar" id="ajax" icon="ui-icon-search" 
+                                     update="growl" styleClass="ui-priority-primary" />                    
                 </h:panelGrid>
             </p:fieldset>
             
              <p:separator />
             <h3 style="margin-top:0">Elija la unidad de Aprendizaje a Agregar al Material Propuesto</h3>
             <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Username</th>
-                </tr>
-              </thead>
+              <thead><tr><th>Nro</th><th>Unidad de Aprendizaje</th></tr></thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@TwBootstrap</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">4</th>
-                  <td colspan="2">Larry the Bird</td>
-                  <td>@twitter</td>
-                </tr>
+                <tr><th scope="row">1</th><td>Mark</td></tr>
+                <tr><th scope="row">2</th><td>Mark</td></tr>
+                <tr><th scope="row">3</th><td>Jacob</td></tr>
               </tbody>
             </table>
             <br/><br/>
             <p:separator />
             <h3 style="margin-top:0">Los temas de la Unidad de Aprendizaje son: </h3>
             <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Username</th>
-                </tr>
-              </thead>
+              <thead><tr><th>Temas</th></tr></thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@TwBootstrap</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">4</th>
-                  <td colspan="2">Larry the Bird</td>
-                  <td>@twitter</td>
-                </tr>
+                <tr><th scope="row">1</th></tr>
+                <tr><th scope="row">2</th></tr>
+                <tr><th scope="row">3</th></tr>
+                <tr><th scope="row">4</th></tr>
               </tbody>
             </table>
             <br/><br/>
@@ -108,25 +56,63 @@
             <br/>
             <p:growl id="growlSugerencias" life="2000" />
             
-            <p:selectManyCheckbox id="basic" value="#{checkboxView.selectedConsoles}">
-                <f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-                <f:selectItem itemLabel="PS4" itemValue="PS4" />
-                <f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+            <p:selectManyCheckbox id="basic" value="#{recursosXTemaController.selectedConsoles}">
+                <f:selectItem itemLabel="Imagen" itemValue="IMG" />
+                <f:selectItem itemLabel="Video" itemValue="VIDEO" />
+                <f:selectItem itemLabel="Enlace" itemValue="LINK" />
             </p:selectManyCheckbox>
+ 
 
             <p:outputLabel for="tema" value="Tema" />
-            <p:inputText id="tema"/>         
-            <p:commandButton value="" id="sugerencias" icon="ui-icon-search" update="growlSugerencias" styleClass="ui-priority-primary" />                    
-            <br/>
+            <p:inputText id="tema" value="#{recursosXTemaController.temaBuscar}" required="true"
+                         requiredMessage="#{bundle.INGRESE_TEMA}"/>            
             
-            <p:dataList value="#{dataListView.cars2}" var="car" type="definition">
-                <f:facet name="header">
-                    Definition
-                </f:facet> Brand: #{car.brand}, Year: #{car.year}
-                <f:facet name="description">
-                    <p:graphicImage name="../../images/mod_recursos/#{car.brand}.gif"/> 
-                </f:facet>
-            </p:dataList>
+            <p:commandButton value="Buscar" id="sugerencias" icon="ui-icon-search" 
+                             action="#{recursosXTemaController.BuscarRecursosSugeridos}" 
+                             update="growlSugerencias" styleClass="ui-priority-primary" />                    
+            <br/><br/>
+    
+            <table style="width: 50%;" cellpadding="2">
+                <tbody>
+                    <tr style="height: 21px;">
+                        <td style="height: 21px;">
+                            <div class="contenedor-columna">
+                                <p:dataList value="#{dataListView.recurso1}" var="recVideo" type="definition">
+                                    <f:facet name="header">Imagen</f:facet> 
+                                        #{recVideo.descripcion}
+                                    <f:facet name="description">
+                                        <p:graphicImage name="../../images/mod_recursos/BMW.gif"/> 
+                                    </f:facet>
+                                </p:dataList>  
+                             </div>
+                        </td>
+                        <td style="height: 21px;">
+                            <div class="contenedor-columna">
+                                <p:dataList value="#{dataListView.recurso2}" var="recImagen" type="definition">
+                                    <f:facet name="header">Video</f:facet> 
+                                        #{recImagen.descripcion}
+                                    <f:facet name="description">
+                                        <p:graphicImage name="../../images/mod_recursos/BMW.gif"/> 
+                                    </f:facet>
+                                </p:dataList>  
+                             </div>
+                        </td>
+                        <td style="height: 21px;">
+                            <div class="contenedor-columna">
+                                <p:dataList value="#{dataListView.recurso3}" var="recEnlaces" type="definition">
+                                    <f:facet name="header">Enlaces</f:facet> 
+                                        #{recEnlaces.descripcion}
+                                    <f:facet name="description">
+                                        <p:graphicImage name="../../images/mod_recursos/BMW.gif"/> 
+                                    </f:facet>
+                                </p:dataList>  
+                             </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- DivTable.com -->
+          
         </p:fieldset>        
         <!-- BUSQUEDA DE MATERIAL PROPUESTO POR TEMA POR BUSQUEDA SEMANTICA -->
         

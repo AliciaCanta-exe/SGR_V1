@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipoRecursoEditDlg" widgetVar="TipoRecursoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTipoRecursoTitle}">
+            <h:form id="TipoRecursoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tipoRecursoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTipoRecursoLabel_tipoRecursoId}" for="tipoRecursoId" />
+                        <p:inputText id="tipoRecursoId" value="#{tipoRecursoController.selected.tipoRecursoId}" title="#{bundle.EditTipoRecursoTitle_tipoRecursoId}" required="true" requiredMessage="#{bundle.EditTipoRecursoRequiredMessage_tipoRecursoId}"/>
+                        <p:outputLabel value="#{bundle.EditTipoRecursoLabel_codigo}" for="codigo" />
+                        <p:inputText id="codigo" value="#{tipoRecursoController.selected.codigo}" title="#{bundle.EditTipoRecursoTitle_codigo}" required="true" requiredMessage="#{bundle.EditTipoRecursoRequiredMessage_codigo}"/>
+                        <p:outputLabel value="#{bundle.EditTipoRecursoLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{tipoRecursoController.selected.nombre}" title="#{bundle.EditTipoRecursoTitle_nombre}" required="true" requiredMessage="#{bundle.EditTipoRecursoRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.EditTipoRecursoLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{tipoRecursoController.selected.descripcion}" title="#{bundle.EditTipoRecursoTitle_descripcion}" required="true" requiredMessage="#{bundle.EditTipoRecursoRequiredMessage_descripcion}"/>
+                        <p:outputLabel value="#{bundle.EditTipoRecursoLabel_fechaRegistro}" for="fechaRegistro" />
+                        <p:calendar id="fechaRegistro" pattern="MM/dd/yyyy" value="#{tipoRecursoController.selected.fechaRegistro}" title="#{bundle.EditTipoRecursoTitle_fechaRegistro}" required="true" requiredMessage="#{bundle.EditTipoRecursoRequiredMessage_fechaRegistro}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditTipoRecursoLabel_fechaActualizacion}" for="fechaActualizacion" />
+                        <p:calendar id="fechaActualizacion" pattern="MM/dd/yyyy" value="#{tipoRecursoController.selected.fechaActualizacion}" title="#{bundle.EditTipoRecursoTitle_fechaActualizacion}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditTipoRecursoLabel_codigoEstado}" for="codigoEstado" />
+                        <p:selectOneMenu id="codigoEstado" value="#{tipoRecursoController.selected.codigoEstado}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{estadoController.itemsAvailableSelectOne}"
+                                           var="codigoEstadoItem"
+                                           itemValue="#{codigoEstadoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTipoRecursoLabel_usuarioId}" for="usuarioId" />
+                        <p:selectOneMenu id="usuarioId" value="#{tipoRecursoController.selected.usuarioId}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"
+                                           var="usuarioIdItem"
+                                           itemValue="#{usuarioIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tipoRecursoController.update}" value="#{bundle.Save}" update="display,:TipoRecursoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipoRecursoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TipoRecursoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

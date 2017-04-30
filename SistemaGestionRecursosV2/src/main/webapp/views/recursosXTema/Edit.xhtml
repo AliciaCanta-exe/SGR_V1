@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RecursosXTemaEditDlg" widgetVar="RecursosXTemaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditRecursosXTemaTitle}">
+            <h:form id="RecursosXTemaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{recursosXTemaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditRecursosXTemaLabel_rxtId}" for="rxtId" />
+                        <p:inputText id="rxtId" value="#{recursosXTemaController.selected.rxtId}" title="#{bundle.EditRecursosXTemaTitle_rxtId}" required="true" requiredMessage="#{bundle.EditRecursosXTemaRequiredMessage_rxtId}"/>
+                        <p:outputLabel value="#{bundle.EditRecursosXTemaLabel_fuente}" for="fuente" />
+                        <p:inputText id="fuente" value="#{recursosXTemaController.selected.fuente}" title="#{bundle.EditRecursosXTemaTitle_fuente}" required="true" requiredMessage="#{bundle.EditRecursosXTemaRequiredMessage_fuente}"/>
+                        <p:outputLabel value="#{bundle.EditRecursosXTemaLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{recursosXTemaController.selected.descripcion}" title="#{bundle.EditRecursosXTemaTitle_descripcion}" />
+                        <p:outputLabel value="#{bundle.EditRecursosXTemaLabel_detalleDescripcion}" for="detalleDescripcion" />
+                        <p:inputText id="detalleDescripcion" value="#{recursosXTemaController.selected.detalleDescripcion}" title="#{bundle.EditRecursosXTemaTitle_detalleDescripcion}" />
+                        <p:outputLabel value="#{bundle.EditRecursosXTemaLabel_contenturl}" for="contenturl" />
+                        <p:inputText id="contenturl" value="#{recursosXTemaController.selected.contenturl}" title="#{bundle.EditRecursosXTemaTitle_contenturl}" />
+                        <p:outputLabel value="#{bundle.EditRecursosXTemaLabel_url}" for="url" />
+                        <p:inputText id="url" value="#{recursosXTemaController.selected.url}" title="#{bundle.EditRecursosXTemaTitle_url}" />
+                        <p:outputLabel value="#{bundle.EditRecursosXTemaLabel_license}" for="license" />
+                        <p:inputText id="license" value="#{recursosXTemaController.selected.license}" title="#{bundle.EditRecursosXTemaTitle_license}" />
+                        <p:outputLabel value="#{bundle.EditRecursosXTemaLabel_referencia1}" for="referencia1" />
+                        <p:inputText id="referencia1" value="#{recursosXTemaController.selected.referencia1}" title="#{bundle.EditRecursosXTemaTitle_referencia1}" />
+                        <p:outputLabel value="#{bundle.EditRecursosXTemaLabel_referencia2}" for="referencia2" />
+                        <p:inputText id="referencia2" value="#{recursosXTemaController.selected.referencia2}" title="#{bundle.EditRecursosXTemaTitle_referencia2}" />
+                        <p:outputLabel value="#{bundle.EditRecursosXTemaLabel_fechaRegistro}" for="fechaRegistro" />
+                        <p:calendar id="fechaRegistro" pattern="MM/dd/yyyy" value="#{recursosXTemaController.selected.fechaRegistro}" title="#{bundle.EditRecursosXTemaTitle_fechaRegistro}" required="true" requiredMessage="#{bundle.EditRecursosXTemaRequiredMessage_fechaRegistro}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditRecursosXTemaLabel_fechaActualizacion}" for="fechaActualizacion" />
+                        <p:calendar id="fechaActualizacion" pattern="MM/dd/yyyy" value="#{recursosXTemaController.selected.fechaActualizacion}" title="#{bundle.EditRecursosXTemaTitle_fechaActualizacion}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditRecursosXTemaLabel_codigoEstado}" for="codigoEstado" />
+                        <p:selectOneMenu id="codigoEstado" value="#{recursosXTemaController.selected.codigoEstado}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{estadoController.itemsAvailableSelectOne}"
+                                           var="codigoEstadoItem"
+                                           itemValue="#{codigoEstadoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditRecursosXTemaLabel_temaId}" for="temaId" />
+                        <p:selectOneMenu id="temaId" value="#{recursosXTemaController.selected.temaId}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{temasController.itemsAvailableSelectOne}"
+                                           var="temaIdItem"
+                                           itemValue="#{temaIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditRecursosXTemaLabel_tipoRecursoId}" for="tipoRecursoId" />
+                        <p:selectOneMenu id="tipoRecursoId" value="#{recursosXTemaController.selected.tipoRecursoId}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tipoRecursoController.itemsAvailableSelectOne}"
+                                           var="tipoRecursoIdItem"
+                                           itemValue="#{tipoRecursoIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditRecursosXTemaLabel_usuarioId}" for="usuarioId" />
+                        <p:selectOneMenu id="usuarioId" value="#{recursosXTemaController.selected.usuarioId}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"
+                                           var="usuarioIdItem"
+                                           itemValue="#{usuarioIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{recursosXTemaController.update}" value="#{bundle.Save}" update="display,:RecursosXTemaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RecursosXTemaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RecursosXTemaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
