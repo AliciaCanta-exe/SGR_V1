@@ -6,6 +6,8 @@
 package com.cato.sessions;
 
 import com.cato.entities.RecursosXTema;
+import com.cato.entities.Temas;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,4 +31,16 @@ public class RecursosXTemaFacade extends AbstractFacade<RecursosXTema> {
         super(RecursosXTema.class);
     }
     
+    public List<RecursosXTema> findByTemaId(Temas tema, Integer tipo) {
+
+    try {
+        return (List<RecursosXTema>) em.createNamedQuery("RecursosXTema.findByTemaId_Tipo")
+                .setParameter(1, tema)
+                .setParameter(2, tipo)
+                .getResultList();
+    }catch(Exception ex) {
+        return null;
+    }
+
+}
 }

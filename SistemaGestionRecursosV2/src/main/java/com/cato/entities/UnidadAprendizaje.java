@@ -44,6 +44,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "UnidadAprendizaje.findByCantTemas", query = "SELECT u FROM UnidadAprendizaje u WHERE u.cantTemas = :cantTemas")
     , @NamedQuery(name = "UnidadAprendizaje.findByFechaRegistro", query = "SELECT u FROM UnidadAprendizaje u WHERE u.fechaRegistro = :fechaRegistro")
     , @NamedQuery(name = "UnidadAprendizaje.findByFechaActualizacion", query = "SELECT u FROM UnidadAprendizaje u WHERE u.fechaActualizacion = :fechaActualizacion")
+    , @NamedQuery(name = "UnidadAprendizaje.findByCursoId", query = "SELECT u FROM UnidadAprendizaje u WHERE u.cursoId = ?1")
+    , @NamedQuery(name = "Temas.findByUnidadAprendizajeId", query = "SELECT t FROM Temas t WHERE t.unidadAprendizajeId = ?1")
     , @NamedQuery(name = "UnidadAprendizaje.findByReferencia1", query = "SELECT u FROM UnidadAprendizaje u WHERE u.referencia1 = :referencia1")})
 public class UnidadAprendizaje implements Serializable {
 

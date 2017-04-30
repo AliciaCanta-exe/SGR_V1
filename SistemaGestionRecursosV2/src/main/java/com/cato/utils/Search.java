@@ -4,7 +4,6 @@ package com.cato.utils;
  *
  * @author Alicia C
  */
-import com.cato.entities.RecursosXTema;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestFactory;
@@ -52,12 +51,12 @@ public class Search {
     }
   }
   
-  public Object BuscarRecursosOnline(String tema){
+  public JSONObject BuscarRecursosOnline(String tema){
+      
+      JSONObject response = new JSONObject();
       
     try {
         
-    //  properties.load(new FileInputStream("kgsearch.properties"));
-
       HttpTransport httpTransport = new NetHttpTransport();
       HttpRequestFactory requestFactory = httpTransport.createRequestFactory();
       JSONParser parser = new JSONParser();
@@ -68,10 +67,12 @@ public class Search {
       url.put("key", "AIzaSyB71yL3Jv5dvIROXKNcoy0_mvck0GZIiCM");//properties.get("API_KEY"));
       HttpRequest request = requestFactory.buildGetRequest(url);
       HttpResponse httpResponse = request.execute();
-      JSONObject response = (JSONObject) parser.parse(httpResponse.parseAsString());
+      
+      response = (JSONObject) parser.parse(httpResponse.parseAsString());
+      
       JSONArray elements = (JSONArray) response.get("itemListElement");
       
-      System.out.println(":::::::::: elements ::::::::: "+elements);
+      System.out.println(":: Elemento JSON  ::::::::: "+elements);
       
       for (Object element : elements) {
         System.out.println(JsonPath.read(element, "$.result.name").toString());
@@ -79,6 +80,6 @@ public class Search {
     } catch (Exception ex) {
       ex.printStackTrace();
     }      
-      return null;
+      return response;
   }
 }

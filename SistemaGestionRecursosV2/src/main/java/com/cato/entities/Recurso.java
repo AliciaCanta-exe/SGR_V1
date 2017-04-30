@@ -18,7 +18,12 @@ public class Recurso implements Serializable {
    private String license;  
    private String referencia1;
 
-    public Recurso() {}
+   public Recurso() {}
+   
+   public Recurso(String name, String URL) {
+       this.tema = name;
+       this.url  = URL;
+   }
     
     public Recurso(String tipo_recurso, String tema, String fuente, 
             String descripcion, String detalle_descripcion, String contentUrl,
@@ -32,15 +37,6 @@ public class Recurso implements Serializable {
         this.url                 = url;
         this.license             = license;
         this.referencia1         = referencia1;
-    }
-
-    public Recurso(String randomId, String randomBrand, int randomYear, String randomColor, int randomPrice, 
-            boolean randomSoldState) {
-        this.tipo_recurso   = randomId;
-        this.tema           = randomBrand;
-        this.fuente         = String.valueOf(randomPrice);
-        this.descripcion    = randomColor;
-        this.detalle_descripcion = String.valueOf(randomSoldState);     
     }
 
     /**

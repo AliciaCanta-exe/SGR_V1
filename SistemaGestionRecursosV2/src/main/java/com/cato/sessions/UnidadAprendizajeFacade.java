@@ -5,7 +5,9 @@
  */
 package com.cato.sessions;
 
+import com.cato.entities.Cursos;
 import com.cato.entities.UnidadAprendizaje;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +30,14 @@ public class UnidadAprendizajeFacade extends AbstractFacade<UnidadAprendizaje> {
     public UnidadAprendizajeFacade() {
         super(UnidadAprendizaje.class);
     }
-    
+        public List<UnidadAprendizaje> findByCursoId(Cursos curso) {
+        
+        try {
+           return (List<UnidadAprendizaje>) em.createNamedQuery("UnidadAprendizaje.findByCursoId")
+                   .setParameter(1, curso)
+                   .getResultList();
+        }catch(Exception ex) {
+            return null;
+        }
+    }
 }

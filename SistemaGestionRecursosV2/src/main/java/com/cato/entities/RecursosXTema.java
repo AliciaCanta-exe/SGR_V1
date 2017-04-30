@@ -43,6 +43,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "RecursosXTema.findByReferencia1", query = "SELECT r FROM RecursosXTema r WHERE r.referencia1 = :referencia1")
     , @NamedQuery(name = "RecursosXTema.findByReferencia2", query = "SELECT r FROM RecursosXTema r WHERE r.referencia2 = :referencia2")
     , @NamedQuery(name = "RecursosXTema.findByFechaRegistro", query = "SELECT r FROM RecursosXTema r WHERE r.fechaRegistro = :fechaRegistro")
+    , @NamedQuery(name = "RecursosXTema..findByTemaId_Tipo", query = "SELECT t FROM RecursosXTema t WHERE t.temaId = ?1 and t.tipoRecursoId = ?2")
     , @NamedQuery(name = "RecursosXTema.findByFechaActualizacion", query = "SELECT r FROM RecursosXTema r WHERE r.fechaActualizacion = :fechaActualizacion")})
 public class RecursosXTema implements Serializable {
 

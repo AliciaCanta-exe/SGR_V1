@@ -16,45 +16,97 @@
         <h:form id="RMPP_Form">
             
             <p:fieldset legend="Buscar Malla" style="margin-bottom:20px">
-                <p:growl id="growl" life="2000" />
-                <h:panelGrid columns="2" cellpadding="5">
-                    
-                    <p:outputLabel for="anio" value="Año"/>
-                    <p:inputText id="anio"/> 
-                    <p:outputLabel for="codigoMalla" value="Codigo"/>
-                    <p:inputText id="codigoMalla"/>   
-                    <p:commandButton value="Buscar" id="ajax" icon="ui-icon-search" 
-                                     update="growl" styleClass="ui-priority-primary" />                    
-                </h:panelGrid>
+              
+                <p:selectOneMenu value="#{recursosXTemaController.tipoBusquedaMalla}">
+                    <f:selectItem itemLabel="Código" itemValue="codigo" />
+                    <f:selectItem itemLabel="Año" itemValue="anio" />
+                </p:selectOneMenu>
+                <p:inputText value="#{recursosXTemaController.valorTipoBusquedaMalla}" />        
+
+                <p:commandButton value="Buscar" update=":RMPP_Form:somLstCursos" 
+                                 action="#{recursosXTemaController.buscarPorMallaLstCursos()}" />                   
             </p:fieldset>
             
-             <p:separator />
+            Listado de Cursos: 
+            <p:selectOneMenu id="somLstCursos" value="#{recursosXTemaController.curso}">
+                <f:selectItems value="#{recursosXTemaController.lstCursos}" var="curso"
+                               itemLabel="#{curso.cursoId.nombre}" itemValue="#{curso.cursoId}" />
+                <p:ajax event="change" listener="#{recursosXTemaController.buscarPorCursoUnidadAprendizaje()}"
+                        update=":RMPP_Form:dtLstCursos" />
+            </p:selectOneMenu>            
+            
+            <p:separator />
             <h3 style="margin-top:0">Elija la unidad de Aprendizaje a Agregar al Material Propuesto</h3>
-            <table class="table table-bordered">
-              <thead><tr><th>Nro</th><th>Unidad de Aprendizaje</th></tr></thead>
-              <tbody>
-                <tr><th scope="row">1</th><td>Mark</td></tr>
-                <tr><th scope="row">2</th><td>Mark</td></tr>
-                <tr><th scope="row">3</th><td>Jacob</td></tr>
-              </tbody>
-            </table>
+                
+            <p:dataTable id="dtLstCursos" var="unidadAprendizaje" style="width: 800px;"
+                         value="#{recursosXTemaController.lstUnidadAprendizaje}">
+                <p:column id="col3">
+                    #{unidadAprendizaje.unidadAprendizajeId}
+                </p:column>
+                <p:column id="col1">
+                    #{unidadAprendizaje.nombre}
+                </p:column>
+                <p:column id="col2">
+                    #{unidadAprendizaje.descripcion}
+                </p:column>
+                <p:column>
+                    <p:commandButton value="Buscar"
+                                     update=":RMPP_Form:dtTemas"
+                                     action="#{recursosXTemaController.buscarPorUnidadAprendizajeTemas()}">
+                        <f:setPropertyActionListener 
+                            value="#{unidadAprendizaje}" 
+                            target="#{recursosXTemaController.unidadAprendizaje}" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
             <br/><br/>
             <p:separator />
             <h3 style="margin-top:0">Los temas de la Unidad de Aprendizaje son: </h3>
-            <table class="table table-bordered">
-              <thead><tr><th>Temas</th></tr></thead>
-              <tbody>
-                <tr><th scope="row">1</th></tr>
-                <tr><th scope="row">2</th></tr>
-                <tr><th scope="row">3</th></tr>
-                <tr><th scope="row">4</th></tr>
-              </tbody>
-            </table>
+            <p:dataTable id="dtTemas" var="tema" style="width: 800px;"
+                         value="#{recursosXTemaController.lstTemas}">
+                <p:column>
+                    #{tema.codigo}
+                </p:column>
+                <p:column>
+                    #{tema.nombre}
+                </p:column>
+                <p:column>
+                    <p:commandButton value="Buscar"
+                                     update=":RMPP_Form:dtVideos :RMPP_Form:dtFotos :RMPP_Form:dtEnlaces"
+                                     action="#{recursosXTemaController.buscarPorTemaVideosFotosYEnlaces()}">
+                        <f:setPropertyActionListener 
+                            value="#{tema}" 
+                            target="#{recursosXTemaController.tema}" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+            <br/><br/>
+            <p:dataTable id="dtVideos" var="video" style="width: 200px;float: left;"
+                         value="#{recursosXTemaController.lstVideos}">
+                <p:column headerText="Video">
+                    #{RecursosXTema.descripcion}
+                </p:column>
+
+            </p:dataTable>
+
+            <p:dataTable id="dtFotos" var="foto" style="width: 200px;float: left;"
+                         value="#{recursosXTemaController.lstFotos}">
+                <p:column headerText="Foto">
+                    #{RecursosXTema.descripcion}
+                </p:column>
+            </p:dataTable>
+
+            <p:dataTable id="dtEnlaces" var="enlace" style="width: 200px;float: left;"
+                         value="#{recursosXTemaController.lstEnlaces}">
+                <p:column headerText="Enlace">
+                    #{RecursosXTema.descripcion}
+                </p:column>
+            </p:dataTable>            
             <br/><br/>
         <!-- BUSQUEDA DE MATERIAL PROPUESTO POR TEMA POR BUSQUEDA SEMANTICA -->
         <p:fieldset legend="Selecciones las opciones de busqueda" style="margin-bottom:20px">
             <br/>
-            <p:growl id="growlSugerencias" life="2000" />
+            <p:growl id="growl" life="2000" />
             
             <p:selectManyCheckbox id="basic" value="#{recursosXTemaController.selectedConsoles}">
                 <f:selectItem itemLabel="Imagen" itemValue="IMG" />
@@ -69,7 +121,7 @@
             
             <p:commandButton value="Buscar" id="sugerencias" icon="ui-icon-search" 
                              action="#{recursosXTemaController.BuscarRecursosSugeridos}" 
-                             update="growlSugerencias" styleClass="ui-priority-primary" />                    
+                             update="growl" styleClass="ui-priority-primary" />                    
             <br/><br/>
     
             <table style="width: 50%;" cellpadding="2">
@@ -77,9 +129,9 @@
                     <tr style="height: 21px;">
                         <td style="height: 21px;">
                             <div class="contenedor-columna">
-                                <p:dataList value="#{dataListView.recurso1}" var="recVideo" type="definition">
+                                <p:dataList value="#{recursosXTemaController.arrayrecurso1}" var="recVideo" type="definition">
                                     <f:facet name="header">Imagen</f:facet> 
-                                        #{recVideo.descripcion}
+                                        #{recVideo.url}
                                     <f:facet name="description">
                                         <p:graphicImage name="../../images/mod_recursos/BMW.gif"/> 
                                     </f:facet>
@@ -88,9 +140,9 @@
                         </td>
                         <td style="height: 21px;">
                             <div class="contenedor-columna">
-                                <p:dataList value="#{dataListView.recurso2}" var="recImagen" type="definition">
+                                <p:dataList value="#{recursosXTemaController.arrayrecurso2}" var="recImagen" type="definition">
                                     <f:facet name="header">Video</f:facet> 
-                                        #{recImagen.descripcion}
+                                        #{recImagen.url}
                                     <f:facet name="description">
                                         <p:graphicImage name="../../images/mod_recursos/BMW.gif"/> 
                                     </f:facet>
@@ -99,9 +151,9 @@
                         </td>
                         <td style="height: 21px;">
                             <div class="contenedor-columna">
-                                <p:dataList value="#{dataListView.recurso3}" var="recEnlaces" type="definition">
+                                <p:dataList value="#{recursosXTemaController.arrayrecurso3}" var="recEnlaces" type="definition">
                                     <f:facet name="header">Enlaces</f:facet> 
-                                        #{recEnlaces.descripcion}
+                                        #{recEnlaces.url}
                                     <f:facet name="description">
                                         <p:graphicImage name="../../images/mod_recursos/BMW.gif"/> 
                                     </f:facet>

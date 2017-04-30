@@ -28,5 +28,27 @@ public class MallasFacade extends AbstractFacade<Mallas> {
     public MallasFacade() {
         super(Mallas.class);
     }
-    
+
+    public Mallas findByCodigo(String codigo) {
+
+        try {
+            return (Mallas) em.createNamedQuery("Mallas.findByCodigo")
+                    .setParameter("codigo", codigo)
+                    .getSingleResult();
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+
+    public Mallas findByAnio(String anio) {
+
+        try {
+            return (Mallas) em.createNamedQuery("Mallas.findByAnio")
+                    .setParameter("anio", anio)
+                    .getSingleResult();
+
+        } catch (Exception ex) {
+            return null;
+        }
+    }
 }

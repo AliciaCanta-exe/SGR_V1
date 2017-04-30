@@ -39,6 +39,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "CursosXMalla.findByFechaRegistro", query = "SELECT c FROM CursosXMalla c WHERE c.fechaRegistro = :fechaRegistro")
     , @NamedQuery(name = "CursosXMalla.findByFechaActualizacion", query = "SELECT c FROM CursosXMalla c WHERE c.fechaActualizacion = :fechaActualizacion")
     , @NamedQuery(name = "CursosXMalla.findByReferencia1", query = "SELECT c FROM CursosXMalla c WHERE c.referencia1 = :referencia1")
+    , @NamedQuery(name = "CursosXMalla.findByMallaId", query = "SELECT c FROM CursosXMalla c WHERE c.mallaId = ?1")
     , @NamedQuery(name = "CursosXMalla.findByReferencia2", query = "SELECT c FROM CursosXMalla c WHERE c.referencia2 = :referencia2")})
 public class CursosXMalla implements Serializable {
 

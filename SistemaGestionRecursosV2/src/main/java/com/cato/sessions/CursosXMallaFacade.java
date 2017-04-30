@@ -6,6 +6,8 @@
 package com.cato.sessions;
 
 import com.cato.entities.CursosXMalla;
+import com.cato.entities.Mallas;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +30,16 @@ public class CursosXMallaFacade extends AbstractFacade<CursosXMalla> {
     public CursosXMallaFacade() {
         super(CursosXMalla.class);
     }
+    
+    public List<CursosXMalla> findByMallaId(Mallas malla) {
+    
+        try {
+            return (List<CursosXMalla>) em.createNamedQuery("CursosXMalla.findByMallaId")
+                    .setParameter(1, malla)
+                    .getResultList();
+        } catch(Exception ex) {
+            return null;
+        }
+    }    
     
 }
