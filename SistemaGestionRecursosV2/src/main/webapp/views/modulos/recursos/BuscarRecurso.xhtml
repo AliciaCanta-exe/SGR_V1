@@ -12,7 +12,7 @@
 
         <p:selectManyCheckbox id="basic" value="#{recursosXTemaController.selectedConsoles}">
             <f:selectItem itemLabel="Imagen" itemValue="IMG" />
-            <f:selectItem itemLabel="Video" itemValue="VIDEO" />
+            <f:selectItem itemLabel="Video"  itemValue="VIDEO" />
             <f:selectItem itemLabel="Enlace" itemValue="LINK" />
         </p:selectManyCheckbox>
 
@@ -33,10 +33,13 @@
                     <td style="height: 21px;">
                         <div class="contenedor-columna">
                             <p:dataList id="dlSearchVideo" value="#{recursosXTemaController.recurso1}" var="recVideo" type="definition">
-                                <f:facet name="header">Imagen</f:facet> 
-                                    #{recVideo.url}
-                                <f:facet name="description">
-                                    <p:graphicImage name="../../images/mod_recursos/BMW.gif"/> 
+                                <p:dialog header="Enlace" widgetVar="dlg1" minHeight="40">
+                                    <h:outputText value="#{recVideo.url}" />
+                                </p:dialog>
+                                <f:facet name="header">Imagen</f:facet><!--{recVideo.url}-->
+                                <f:facet name="description"> 
+                                    <p:graphicImage onclick="PF('dlg1').show();" 
+                                                    value="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/img/modrecursos/photo.png"/> 
                                 </f:facet>
                             </p:dataList>  
                          </div>
@@ -44,10 +47,12 @@
                     <td style="height: 21px;">
                         <div class="contenedor-columna">
                             <p:dataList id="dlSearchImg" value="#{recursosXTemaController.recurso2}" var="recImagen" type="definition">
-                                <f:facet name="header">Video</f:facet> 
-                                    #{recImagen.url}
+                                <p:dialog header="Enlace" widgetVar="dlg2" minHeight="40">
+                                    <h:outputText value="#{recImagen.url}" />
+                                </p:dialog>                                
+                                <f:facet name="header">Video</f:facet> <!--{recImagen.url} -->                                    
                                 <f:facet name="description">
-                                    <p:graphicImage name="../../images/mod_recursos/BMW.gif"/> 
+                                    <p:graphicImage onclick="PF('dlg2').show();" value="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/img/modrecursos/video1.png"/> 
                                 </f:facet>
                             </p:dataList>  
                          </div>
@@ -55,10 +60,12 @@
                     <td style="height: 21px;">
                         <div class="contenedor-columna">
                             <p:dataList id="dlSearchLink" value="#{recursosXTemaController.recurso3}" var="recEnlaces" type="definition">
-                                <f:facet name="header">Enlaces</f:facet> 
-                                    #{recEnlaces.url}
+                                <p:dialog header="Enlace" widgetVar="dlg3" minHeight="40">
+                                    <h:outputText value="#{recEnlaces.url}" />
+                                </p:dialog>                                
+                                <f:facet name="header">Enlaces</f:facet> <!--{recEnlaces.url}-->                                    
                                 <f:facet name="description">
-                                    <p:graphicImage name="../../images/mod_recursos/BMW.gif"/> 
+                                    <p:graphicImage onclick="PF('dlg3').show();" value="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/img/modrecursos/link.png"/> 
                                 </f:facet>
                             </p:dataList>  
                          </div>

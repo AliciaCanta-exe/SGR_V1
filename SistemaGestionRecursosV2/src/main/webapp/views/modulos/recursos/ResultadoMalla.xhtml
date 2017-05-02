@@ -5,7 +5,8 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-    <p:fieldset legend="Elija la unidad de Aprendizaje a Agregar al Material Propuesto" style="margin-bottom:20px">
+    <fieldset style="border:6px groove #ccc; background:#F8ECE0;">
+    <legend style="font-weight:bold; color:#61380B;">Elija la unidad de Aprendizaje a Agregar al Material Propuesto</legend>    
     <br/>
         <p:dataTable id="dtLstCursos" var="unidadAprendizaje" style="width: 800px;" value="#{recursosXTemaController.lstUnidadAprendizaje}">
             <p:column id="col3">#{unidadAprendizaje.unidadAprendizajeId}</p:column>
@@ -19,9 +20,10 @@
             </p:column>
         </p:dataTable>   
     <br/>
-    </p:fieldset> 
+    </fieldset> 
 
-    <p:fieldset legend="Temas de la Unidad de Aprendizaje" style="margin-bottom:20px">
+    <fieldset style="border:6px groove #ccc; background:#F8ECE0;">
+    <legend style="font-weight:bold; color:#61380B;">Temas de la Unidad de Aprendizaje</legend>           
     <br/>
         <p:dataTable id="dtTemas" var="tema" style="width: 800px;" value="#{recursosXTemaController.lstTemas}">
             <p:column>#{tema.codigo}</p:column>
@@ -34,9 +36,10 @@
             </p:column>
         </p:dataTable>
     <br/>
-    </p:fieldset>
+    </fieldset>
 
-    <p:fieldset legend="Recursos por Tema" style="margin-bottom:20px">
+    <fieldset style="border:6px groove #ccc; background:#F8ECE0;">
+    <legend style="font-weight:bold; color:#61380B;">Recursos por Tema</legend>      
     <br/>
     <p:dataTable id="recursos" style="width: 800px;" value="#{recursosXTemaController.lstTemas}">
         <!--	
@@ -70,5 +73,5 @@
         </p:column>-->
     </p:dataTable>
     <br/>
-    </p:fieldset> 
+    </fieldset> 
 </html>

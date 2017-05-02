@@ -93,7 +93,7 @@ public class RecursosXTemaController implements Serializable {
         unidadAprendizaje = new UnidadAprendizaje();        
         tema = new Temas();
         temaBuscar = "";
-        //selectedConsoles = "";
+        
     }    
     
     public void buscarPorMallaLstCursos() {
@@ -269,33 +269,26 @@ public class RecursosXTemaController implements Serializable {
         
         Search search         = new Search();
         JSONObject JsonResult = new JSONObject();
-        List<Recurso> list = new ArrayList<Recurso>();
-        
         try {
             if (selectedConsoles.length>0) {
                 JsonResult = search.BuscarRecursosOnline(getTemaBuscar());               
                 // Parseando los recursos (resultados de la Web)
                 JSONArray elements = (JSONArray) JsonResult.get("itemListElement");
-                
-                   String name,url; 
-                for (int i=0; i<elements.size(); i++) {
-                    name = JsonPath.read(elements.get(i), "$.result.name").toString();
-                    url  = JsonPath.read(elements.get(i), "$.result.detailedDescription.url").toString();
-                    recurso1.add(new Recurso(name,url));
-                    recurso2.add(new Recurso(name,url));
-                    recurso3.add(new Recurso(name,url));
-                    System.out.println("--description ---"+name);  
-                }  
-                 System.out.println("--Ver el reg 1 de:  ---"+recurso1.get(1));  
-                /*for (Object element : elements) {                  
-                  System.out.println("--------------------------------");
-                  System.out.println(JsonPath.read(element, "$.result.name").toString());
-                  System.out.println(JsonPath.read(element, "$.result.detailedDescription.url").toString());
-                  System.out.println("--------------------------------");                  
-                }  */
-               
-              
-   
+
+                    for(int x=0;x<selectedConsoles.length; x++){  
+                       
+                        System.out.println("Check "+x + " Valor: "+selectedConsoles[x]);
+                        
+                        if(selectedConsoles[x].equals("IMG")){
+                            recurso1 =llenarLista(elements);                            
+                        }else if (selectedConsoles[x].equals("VIDEO")){
+                            recurso2 =llenarLista(elements);
+                        }else if (selectedConsoles[x].equals("LINK")){
+                            recurso3 =llenarLista(elements);
+                        }   
+                       //setSelected(null);
+                    } 
+
             }else{
                 persist(null, ResourceBundle.getBundle("resources/Bundle").getString("SELECCIONE_RECURSO"));               
             }            
@@ -305,10 +298,13 @@ public class RecursosXTemaController implements Serializable {
 
     }
   
-    public List<Recurso> createRecurso(String name, String URL, int size) {
+    public List<Recurso> llenarLista(JSONArray elements) {
         List<Recurso> list = new ArrayList<Recurso>();
-        for(int i = 0 ; i < size ; i++) {
-            list.add(new Recurso(name, URL));   
+        for (int i=0; i<5; i++) {
+        //for (int i=0; i<elements.size(); i++) {            
+            list.add(new Recurso(
+                    JsonPath.read(elements.get(i), "$.result.name").toString(), 
+                    JsonPath.read(elements.get(i), "$.result.detailedDescription.url").toString()));   
         }
         return list;
     }    
