@@ -34,7 +34,7 @@ public class RecursosXTemaFacade extends AbstractFacade<RecursosXTema> {
     public List<RecursosXTema> findByTemaId(Temas tema, Integer tipo) {
 
     try {
-        return (List<RecursosXTema>) em.createNamedQuery("RecursosXTema.findByTemaId_Tipo")
+        return (List<RecursosXTema>) em.createNamedQuery("RecursosXTema.findByTemaIdTipoId")
                 .setParameter(1, tema)
                 .setParameter(2, tipo)
                 .getResultList();

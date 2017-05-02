@@ -49,10 +49,7 @@ public class CarService {
     public List<Recurso> createCars(int size) {
         List<Recurso> list = new ArrayList<Recurso>();
         for(int i = 0 ; i < size ; i++) {
-           // list.add(new Recurso(getRandomId(), getRandomBrand(), getRandomYear(), getRandomColor(), getRandomPrice(), getRandomSoldState()));
-//list.add(new Recurso(getRandomId(), getRandomBrand(), getRandomYear(), getRandomColor(), getRandomPrice(), getRandomSoldState()));            
-
-            
+            list.add(new Recurso("123","562"));       
         }
          
         return list;

@@ -17,20 +17,19 @@
 
             <p:panelMenu style="width:300px">
                 <p:submenu label="Modulo Recursos">
-                    <p:menuitem value="Registro Material Propuesto Preliminar" outcome="/views/modulos/recursos/RegistroMaterialPropuestoPreliminar" icon="ui-icon-home" />           
-                    
+                    <p:menuitem value="Registro Material Propuesto Preliminar" outcome="/views/modulos/recursos/RegistroMaterialPropuestoPreliminar" icon="ui-icon-home" />                               
                 </p:submenu> 
-                <p:submenu label="Ajax Menuitems">
+                 <p:submenu label="Ajax Menuitems">
                     <p:menuitem value="Save" actionListener="#{menuView.save}" icon="ui-icon-disk" />
                     <p:menuitem value="Update" actionListener="#{menuView.update}"  icon="ui-icon-arrowrefresh-1-w" />
                 </p:submenu>
                 <p:submenu label="Non-Ajax Menuitem">
                     <p:menuitem value="Delete" actionListener="#{menuView.delete}"  ajax="false" icon="ui-icon-close"/>
-                </p:submenu>        
+                </p:submenu>  
                 <p:separator />
             </p:panelMenu>
         </h:form>        
-        <br/>
+       <!-- <br/>
         <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
         <br />
         <h:link outcome="/views/cursos/List" value="Show All Cursos Items"/>
@@ -49,7 +48,7 @@
         <br />
         <h:link outcome="/views/tipoRecurso/List" value="Show All TipoRecurso Items"/>        
         <br />
-        <h:link outcome="/views/recursosXTema/List" value="Show All RecursosXTema Items"/>        
+        <h:link outcome="/views/recursosXTema/List" value="Show All RecursosXTema Items"/>   -->     
     </h:body>
 </html>
 

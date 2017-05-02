@@ -14,6 +14,7 @@ import com.cato.sessions.MallasFacade;
 import com.cato.sessions.RecursosXTemaFacade;
 import com.cato.sessions.TemasFacade;
 import com.cato.sessions.UnidadAprendizajeFacade;
+import com.cato.utils.CarService;
 import com.cato.utils.Search;
 import com.jayway.jsonpath.JsonPath;
 
@@ -28,6 +29,7 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -59,9 +61,9 @@ public class RecursosXTemaController implements Serializable {
     @Getter private List<UnidadAprendizaje> lstUnidadAprendizaje;
     @Getter private List<Temas> lstTemas;
     
-    @Getter private List<RecursosXTema> lstVideos;
-    @Getter private List<RecursosXTema> lstFotos;
-    @Getter private List<RecursosXTema> lstEnlaces;
+    @Getter private List<RecursosXTema> lstVideos = null;
+    @Getter private List<RecursosXTema> lstFotos = null;
+    @Getter private List<RecursosXTema> lstEnlaces = null;
     
     @Inject private TemasFacade temasFacade;
     @Inject private MallasFacade mallasFacadeLocal; 
@@ -69,19 +71,16 @@ public class RecursosXTemaController implements Serializable {
     @Inject private UnidadAprendizajeFacade unidadAprendizajeFacade;
     @Inject private RecursosXTemaFacade recursosXTemaFacade;      
     /** **/
-
     
-    private String[] selectedConsoles;
-    private String temaBuscar; 
+    @Getter @Setter private List<Recurso> recurso1;     
+    @Getter @Setter private List<Recurso> recurso2;     
+    @Getter @Setter private List<Recurso> recurso3;    
+    @Getter @Setter private List<Recurso> recurso4;
+    
+    @Getter @Setter private String[] selectedConsoles;
+    @Getter @Setter private String temaBuscar; 
     /*
-    private List<Recurso> recurso1;     
-    private List<Recurso> recurso2;     
-    private List<Recurso> recurso3;    
-    private List<Recurso> recurso4; */
-    private ArrayList<Recurso> arrayrecurso1 = new ArrayList<Recurso>();
-    private ArrayList<Recurso> arrayrecurso2 = new ArrayList<Recurso>();
-    private ArrayList<Recurso> arrayrecurso3 = new ArrayList<Recurso>();
-    private ArrayList<Recurso> arrayrecurso4 = new ArrayList<Recurso>();
+     */
 
     public RecursosXTemaController() {
     }
@@ -93,6 +92,8 @@ public class RecursosXTemaController implements Serializable {
         curso = new Cursos();
         unidadAprendizaje = new UnidadAprendizaje();        
         tema = new Temas();
+        temaBuscar = "";
+        //selectedConsoles = "";
     }    
     
     public void buscarPorMallaLstCursos() {
@@ -103,10 +104,8 @@ public class RecursosXTemaController implements Serializable {
             malla = mallasFacadeLocal.findByCodigo(valorTipoBusquedaMalla);
         } else {
             malla = mallasFacadeLocal.findByAnio(valorTipoBusquedaMalla);
-        }
-        
-        lstCursos = cursosXMallaFacade.findByMallaId(malla);
-        
+        }        
+        lstCursos = cursosXMallaFacade.findByMallaId(malla);        
     }    
     
     public void buscarPorCursoUnidadAprendizaje() {        
@@ -117,10 +116,19 @@ public class RecursosXTemaController implements Serializable {
         lstTemas = temasFacade.findByUnidadAprendizajeId(unidadAprendizaje);        
     }  
     
-    public void buscarPorTemaVideosFotosYEnlaces() {    
-        lstVideos   = recursosXTemaFacade.findByTemaId(tema, 2);
-        lstFotos    = recursosXTemaFacade.findByTemaId(tema, 1);
-        lstEnlaces  = recursosXTemaFacade.findByTemaId(tema, 3);
+    public void buscarPorTemaVideosFotosYEnlaces() {   
+        
+        if (recursosXTemaFacade.findByTemaId(tema, 2)!=null){
+         lstVideos   = recursosXTemaFacade.findByTemaId(tema, 2);
+        }
+        if (recursosXTemaFacade.findByTemaId(tema, 2)!=null){
+         lstFotos    = recursosXTemaFacade.findByTemaId(tema, 1);
+        }
+        if (recursosXTemaFacade.findByTemaId(tema, 2)!=null){
+         lstEnlaces  = recursosXTemaFacade.findByTemaId(tema, 3);
+        }        
+        
+        
     }
         
     
@@ -252,57 +260,42 @@ public class RecursosXTemaController implements Serializable {
                 return null;
             }
         }
-
     }
+    
+    @ManagedProperty("#{carService}")
+    private CarService service;    
     
     public void BuscarRecursosSugeridos() {
         
         Search search         = new Search();
         JSONObject JsonResult = new JSONObject();
-        Recurso rec = new Recurso();
-        Recurso rec1 = new Recurso();
-        Recurso rec2 = new Recurso();
+        List<Recurso> list = new ArrayList<Recurso>();
+        
         try {
             if (selectedConsoles.length>0) {
                 JsonResult = search.BuscarRecursosOnline(getTemaBuscar());               
                 // Parseando los recursos (resultados de la Web)
                 JSONArray elements = (JSONArray) JsonResult.get("itemListElement");
-
-                for (Object element : elements) {
-                  
+                
+                   String name,url; 
+                for (int i=0; i<elements.size(); i++) {
+                    name = JsonPath.read(elements.get(i), "$.result.name").toString();
+                    url  = JsonPath.read(elements.get(i), "$.result.detailedDescription.url").toString();
+                    recurso1.add(new Recurso(name,url));
+                    recurso2.add(new Recurso(name,url));
+                    recurso3.add(new Recurso(name,url));
+                    System.out.println("--description ---"+name);  
+                }  
+                 System.out.println("--Ver el reg 1 de:  ---"+recurso1.get(1));  
+                /*for (Object element : elements) {                  
                   System.out.println("--------------------------------");
                   System.out.println(JsonPath.read(element, "$.result.name").toString());
                   System.out.println(JsonPath.read(element, "$.result.detailedDescription.url").toString());
-                  System.out.println("--------------------------------");
-                   
-                  rec.setTema(JsonPath.read(element, "$.result.name").toString());
-                  rec.setUrl(JsonPath.read(element, "$.result.detailedDescription.url").toString());
-                  arrayrecurso1.add(rec);
-                  
-                  rec.setTema(JsonPath.read(element, "$.result.name").toString());
-                  rec.setUrl(JsonPath.read(element, "$.result.detailedDescription.url").toString());
-                  arrayrecurso3.add(rec1);
-                  
-                  rec.setTema(JsonPath.read(element, "$.result.name").toString());
-                  rec.setUrl(JsonPath.read(element, "$.result.detailedDescription.url").toString());
-                  arrayrecurso3.add(rec2);
-       
-        
-                 /* recurso1.add(new Recurso("AAA","url"));
-                  recurso2.add(new Recurso("BBB","url_"));
-                  recurso3.add(new Recurso("CCC","URL_CCC"));*/
-                  /*
-                  recurso1.add(new 
-                        Recurso(JsonPath.read(element, "$.result.name").toString(),
-                                JsonPath.read(element, "$.result.detailedDescription.url").toString()));
-                  recurso2.add(new 
-                        Recurso(JsonPath.read(element, "$.result.name").toString(),
-                                JsonPath.read(element, "$.result.detailedDescription.url").toString()));
-                  recurso3.add(new 
-                        Recurso(JsonPath.read(element, "$.result.name").toString(),
-                                JsonPath.read(element, "$.result.detailedDescription.url").toString()));*/
-                }                 
-                        
+                  System.out.println("--------------------------------");                  
+                }  */
+               
+              
+   
             }else{
                 persist(null, ResourceBundle.getBundle("resources/Bundle").getString("SELECCIONE_RECURSO"));               
             }            
@@ -319,90 +312,6 @@ public class RecursosXTemaController implements Serializable {
         }
         return list;
     }    
-
-    /**
-     * @return the selectedConsoles
-     */
-    public String[] getSelectedConsoles() {
-        return selectedConsoles;
-    }
-
-    /**
-     * @param selectedConsoles the selectedConsoles to set
-     */
-    public void setSelectedConsoles(String[] selectedConsoles) {
-        this.selectedConsoles = selectedConsoles;
-    }
-
-    /**
-     * @return the temaBuscar
-     */
-    public String getTemaBuscar() {
-        return temaBuscar;
-    }
-
-    /**
-     * @param temaBuscar the temaBuscar to set
-     */
-    public void setTemaBuscar(String temaBuscar) {
-        this.temaBuscar = temaBuscar;
-    }
-
-    /**
-     * @return the arrayrecurso1
-     */
-    public ArrayList<Recurso> getArrayrecurso1() {
-        return arrayrecurso1;
-    }
-
-    /**
-     * @param arrayrecurso1 the arrayrecurso1 to set
-     */
-    public void setArrayrecurso1(ArrayList<Recurso> arrayrecurso1) {
-        this.arrayrecurso1 = arrayrecurso1;
-    }
-
-    /**
-     * @return the arrayrecurso2
-     */
-    public ArrayList<Recurso> getArrayrecurso2() {
-        return arrayrecurso2;
-    }
-
-    /**
-     * @param arrayrecurso2 the arrayrecurso2 to set
-     */
-    public void setArrayrecurso2(ArrayList<Recurso> arrayrecurso2) {
-        this.arrayrecurso2 = arrayrecurso2;
-    }
-
-    /**
-     * @return the arrayrecurso3
-     */
-    public ArrayList<Recurso> getArrayrecurso3() {
-        return arrayrecurso3;
-    }
-
-    /**
-     * @param arrayrecurso3 the arrayrecurso3 to set
-     */
-    public void setArrayrecurso3(ArrayList<Recurso> arrayrecurso3) {
-        this.arrayrecurso3 = arrayrecurso3;
-    }
-
-    /**
-     * @return the arrayrecurso4
-     */
-    public ArrayList<Recurso> getArrayrecurso4() {
-        return arrayrecurso4;
-    }
-
-    /**
-     * @param arrayrecurso4 the arrayrecurso4 to set
-     */
-    public void setArrayrecurso4(ArrayList<Recurso> arrayrecurso4) {
-        this.arrayrecurso4 = arrayrecurso4;
-    }
 
 
 
